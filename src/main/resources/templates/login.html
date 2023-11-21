@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<p th:text="${id}">
+	Welcome to Cron Dashboard
+</p>
+<head> 
+    <title>About</title>
+      <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous"/>
+<div class="container-fluid" style="background-color:darkslateblue;top:150px;">
+<nav th:fragment="navbar" class="navbar navbar-expand-md fixed-top bg-dark navbar-dark" style="text-align:center">
+           <a class="navbar-header navbar-brand" th:href="@{/home}"><h1 style=" display:inline;padding-top: 20%;color:white"><img style="width: 30px;height:30px;display:inline;" th:src="@{/images/cron_jobimg.png}"/>&nbsp;Cron Dashboard</h1></a> 
+        <ul class="nav navbar-nav" style="top:100%;padding-top: 1%;padding-left:50%">
+         <li><a class="nav-link" th:href="@{/home}" style="color:white"><span class="glyphicon glyphicon-off">&nbsp;Login</a></li>
+        </ul> 
+    </div>    
+</nav>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</head>
+<body>
+	<div style="padding: 20px;" > 
+            <h3 style="text-align: center;">Welcome to Cron Dashboard<h3>
+        </div>  
+</body>
+</html>

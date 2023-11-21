@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Home</title>
+      <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous"/>
+<div class="container-fluid" style="background-color:darkslateblue;top:150px;">
+<nav th:fragment="navbar" class="navbar navbar-expand-md fixed-top bg-dark navbar-dark" style="text-align:center">
+           <a class="navbar-header navbar-brand" th:href="@{/home}"><h1 style=" display:inline;padding-top: 20%;color:white"><img style="width: 30px;height:30px;display:inline;" th:src="@{/images/cron_jobimg.png}"/>&nbsp;Cron Dashboard</h1></a> 
+        <ul class="nav navbar-nav" style="top:100%;padding-top: 1%;padding-left:50%">
+            
+             <li><a class="nav-link" th:href="@{/}" style="color:white"><span class="glyphicon glyphicon-off">&nbsp;Logout</a></li>    
+        </ul> 
+    </div>    
+</nav>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</head>
+<body style="">
+<br>
+
+<div id="table" align="center">
+<table class="table table-striped table-hover" style="width:70%;">
+<tr style="border: 2px solid;;background-color: cadetblue;font-weight: bold;">
+<th style="border: 2px solid;border-color:white;text-align:center">CronID</th>
+<th style="border: 2px solid;border-color: white;text-align:center">ServerID</th>
+<th style="border: 2px solid;border-color: white;text-align:center">MachineType</th>
+<th style="border: 2px solid;border-color: white;text-align:center">Dowload Agent</th>
+</tr>
+<tr style="border: 2px solid;border-color: white;text-align:center" th:each="cron:${crons}">
+<td style="border: 2px solid;border-color: white;"><a th:href="@{/getDetails(id=${cron.id})}" style="font-weight: bold;"><p th:text="${cron.CronID}"></p></a></td>
+<td style="border: 2px solid;border-color: white;" th:text="${cron.ServerID}"/>
+<td style="border: 2px solid;border-color: white" th:text="${cron.MachineType}"/>
+<td><a th:href="@{/download(id=${cron.id})}" style="font-weight: bold;"> Download</a></td>
+</trstyle="border: 2px solid;">
+</table><br>
+<button type="submit" class="btn btn-warning" th:onclick="showAlert()">Register New Cron </button></div>
+<div align="center" style="display: none;border: 3px solid #fff;padding: 20px;" id="switch">           
+<div style=" width: 50%;
+    padding: 20px;
+    ">
+   
+    <table style="padding-left: 100%;border:0px solid;width:100%;
+    border-spacing: 0 50px;">
+    <form action="#" th:action="@{/registeration}" method="post" th:object="${cronModel}">
+    <tr>
+    <td colspan="2" style="text-align: center;font-weight:normal;font-size:200%;margin-bottom: 100px;">Cron Registration</td>
+    </tr>
+    <tr style="padding: 20%;">
+          <td><label style="font-size:120%;font-weight:normal;padding-left: 55%;">&nbsp;CronID&nbsp;*</label></td>
+          <td style="padding-left: 5%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 25px;" pattern="[A-Za-z][A-Za-z0-9]*" th:field="*{CronID}" required/></td>
+        </tr>
+        
+         <tr> 
+          <td><label style="font-size:120%;font-weight:normal;padding-left: 55%;">&nbsp;ServerID&nbsp;*</label></td>
+          <td style="padding-left: 5%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="height: 25px;"  pattern="[A-Za-z][A-Za-z0-9.]*"  th:field="*{ServerID}" required/></td>
+        </tr>
+         
+         <tr> 
+          <td><label style="font-size:120%;font-weight:normal;padding-left: 55%;">&nbsp;MachineType&nbsp;*</label></td>
+          
+          <td style="padding-left: 5%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select th:field="*{machineType}" style="width:50%;height: 25px;" required>
+          <option value="">--Please Select One--</option>
+          <option value="AIX">AIX</option>
+          <option value="Fedora">Fedora</option>
+          <option value="Ubuntu">Ubuntu</option>
+          <option value="Red Hat Linux">Red Hat Linux</option>
+          </select></td>
+        </tr>
+        <tr>
+        <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="right"><button type="submit" class="btn btn-primary ">Register</button></td>
+          <td align="left" style="padding-left: 10%;"><button type="submit" class="btn btn-warning ">Reset</button></td>
+        </tr>
+    </form>
+     </table>  
+</div> 
+</div>
+</body>
+</html>

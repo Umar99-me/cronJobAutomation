@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Home</title>
+      <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous"/>
+<div class="container-fluid" style="background-color:black;top:150px;">
+<nav th:fragment="navbar" class="navbar navbar-expand-md fixed-top bg-dark navbar-dark" style="text-align:center">
+           <a class="navbar-header navbar-brand" th:href="@{/}"><h1 style=" display:inline;">Cron Dashboard</h1>&nbsp;|&nbsp;Home</a> 
+        <ul class="nav navbar-nav" style="top:100%">
+           
+            <li><a class="nav-link" th:href="@{/Register}">Register</a></li>
+
+            <li><a class="nav-link" th:href="@{/details}">Details</a></li>
+
+            <li><a class="nav-link" th:href="@{/download}">Download agent</a></li>    
+        </ul> 
+    </div>    
+</nav>
+</head>
+<body>
+
+<div  style=" border: 3px solid #fff;padding: 20px;" >
+        <div style=" width: 50%;float: left;padding: 20px;"> 
+            <h4 style="text-align: right;">Enter Details of the cron <br> for which you <h4>
+        </div>              
+<div style=" width: 50%;
+    float: left;
+    padding: 20px;
+    border-left: 5px solid grey">
+    <h1>Cron Registration</h1>
+    <table style="">
+    <form action="#" th:action="@{/cron/registeration}" method="post" th:object="${cronModel}">
+          <td><label>*&nbsp;CronID&nbsp;:</label></td>
+          <td><input type="text" style="height: 20px;" th:field="*{CronID}" required/></td>
+        </tr>
+         <tr> 
+          <td><label>*&nbsp;ServerID&nbsp;:</label></td>
+          <td><input type="text" style="height: 20px;" th:field="*{ServerID}" required/></td>
+        </tr>
+         <tr> 
+          <td><label>*&nbsp;machineType&nbsp;:</label></td>
+          <td><input type="text" style="height: 20px;" th:field="*{machineType}" required/></td>
+        </tr>
+        <tr>
+          <td><button type="submit" class="btn btn-primary btn-block mt-3">Register</button></td>
+          <td align="right"><button type="submit" class="btn btn-warning ">Reset</button></td>
+        </tr>
+    </form>
+     </table>  
+</div> 
+</div>
+</body>
+</html>

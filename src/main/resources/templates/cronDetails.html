@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Cron Details</title>
+      <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous"/>
+             
+<div class="container-fluid" style="background-color:darkslateblue;top:150px;">
+<nav th:fragment="navbar" class="navbar navbar-expand-md fixed-top bg-dark navbar-dark" style="text-align:center">
+           <a class="navbar-header navbar-brand" th:href="@{/home}"><h1 style=" display:inline;padding-top: 20%;color:white"><img style="width: 30px;height:30px;display:inline;" th:src="@{/images/cron_jobimg.png}"/>&nbsp;Cron Dashboard</h1></a> 
+        <ul class="nav navbar-nav" style="top:100%;padding-top: 1%;padding-left:50%">
+            
+             <li><a class="nav-link" th:href="@{/}" style="color:white"><span class="glyphicon glyphicon-off">&nbsp;Logout</a></li>    
+        </ul> 
+    </div>    
+</nav>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</head>
+<body>
+<table align="center" class="table  table-hover" style="width:70%;"  >
+<tr style="border: 2px solid;;background-color: yellow;font-weight: bold;">
+<th style="border: 2px solid;border-color:white;text-align:center;width:55%">Server ID</th>
+<th  style="border: 2px solid;border-color:white;text-align:center">Cron ID</th>
+</tr>
+<tr style="border: 2px solid;border-color: white;text-align:center">
+<td style="border: 2px solid;border-color: white;" th:text="${serverid}"/>
+<td style="border: 2px solid;border-color: white;" th:text="${cronid}"/>
+</tr>
+</table>
+<br>
+<table align="center" class="table  table-hover" style="width:70%;"  >
+<tr style="border: 2px solid;;background-color: cadetblue;font-weight: bold;">
+<th style="border: 2px solid;border-color:white;text-align:center">Program Name</th>
+<th  style="border: 2px solid;border-color:white;text-align:center">Parameters</th>
+</tr>
+<span th:each="cron:${cronDetails}">
+<tr style="border: 2px solid;border-color: white;text-align:center">
+<td style="border: 2px solid;border-color: white;" th:text="${cron.CronName}"/>
+<td style="border: 2px solid;border-color: white;" th:text="${cron.parameters}"/>
+</tr>
+<tr style="border: 2px solid;border-color: white;text-align:center">
+<td colspan="2" style="padding-bottom: 0px; border-bottom: 2px solid; border-color: green;color:darkred;font-weight: bold;font-style: italic;font-size: medium;" th:text="${cron.description}"/>
+</tr>
+</span>
+</table>
+</body>
+</html>
